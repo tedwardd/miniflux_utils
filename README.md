@@ -45,10 +45,16 @@ Then simply run:
 python add_miniflux_feed.py --url https://example.com/feed.xml
 ```
 
+### List Available Categories
+
+```bash
+python add_miniflux_feed.py --list-categories
+```
+
 ### Add to Specific Category
 
 ```bash
-python add_miniflux_feed.py --url https://example.com/feed.xml --category 5
+python add_miniflux_feed.py --url https://example.com/feed.xml --category "Technology"
 ```
 
 ## Examples
@@ -65,22 +71,27 @@ export MINIFLUX_URL="https://miniflux.example.com"
 export MINIFLUX_API_KEY="your-api-key-123"
 python add_miniflux_feed.py --url https://hnrss.org/newest
 
-# Add to category ID 3
-python add_miniflux_feed.py --url https://example.com/rss --category 3
+# Add to category by name
+python add_miniflux_feed.py --url https://example.com/rss --category "News"
+
+# List all available categories
+python add_miniflux_feed.py --list-categories
 ```
 
 ## Options
 
-- `--url` (required): The RSS/Atom feed URL to add
+- `--url`: The RSS/Atom feed URL to add (required when adding a feed)
 - `--server`: Miniflux server URL (or use `MINIFLUX_URL` environment variable)
 - `--api-key`: Miniflux API key (or use `MINIFLUX_API_KEY` environment variable)
-- `--category`: Optional category ID to add the feed to
+- `--category`: Optional category name to add the feed to (case-insensitive)
+- `--list-categories`: List all available categories and exit
 
 ## Error Handling
 
 The script will:
 - Validate that server URL and API key are provided
 - Display clear error messages if the feed cannot be added
+- If an invalid category name is provided, show all available categories
 - Show the feed details upon successful addition
 
 ## Miniflux API Documentation
